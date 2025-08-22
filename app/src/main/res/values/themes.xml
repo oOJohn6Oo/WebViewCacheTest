@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="Theme.WebViewCacheTest" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="bottomSheetDialogTheme">@style/ModalBottomSheetDialog</item>
+    </style>
+
+    <style name="ModalBottomSheetDialog" parent="BaseModalBottomSheetDialog">
+        <item name="android:colorBackground">@android:color/white</item>
+        <item name="colorOnBackground">@android:color/black</item>
+        <item name="colorSurface">@android:color/white</item>
+        <item name="colorOnSurface">@android:color/black</item>
+    </style>
+
+    <style name="BaseModalBottomSheetDialog" parent="@style/Theme.Material3.DayNight.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/CustomBottomSheet</item>
+        <!--    启用此属性后，自动调用 WindowCompat#setDecorFitsSystemWindows 方法，其他特性也依赖此属性-->
+        <item name="enableEdgeToEdge">true</item>
+        <item name="android:windowIsFloating">false</item>
+        <!--        指定底部留出一定空间-->
+        <item name="paddingBottomSystemWindowInsets">true</item>
+        <!--        定制系统边栏颜色及遮罩层-->
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:enforceNavigationBarContrast" tools:targetApi="q">false</item>
+        <item name="android:enforceStatusBarContrast" tools:targetApi="q">false</item>
+        <item name="android:navigationBarDividerColor" tools:targetApi="o_mr1">
+            @android:color/transparent
+        </item>
+        <!--        定制 BottomSheetDragHandleView 的样式, Material 2 的 Workaround-->
+<!--        <item name="bottomSheetDragHandleStyle">-->
+<!--            @style/Widget.MaterialComponents.BottomSheet.DragHandle-->
+<!--        </item>-->
+    </style>
+
+    <style name="CustomBottomSheet" parent="Widget.MaterialComponents.BottomSheet.Modal">
+        <!--        指定 BottomSheet 的圆角-->
+        <item name="shapeAppearance">@style/BottomSheetDialogShapeAppearance</item>
+        <!--        指定 BottomSheet 的背景色-->
+        <item name="backgroundTint">?attr/colorSurface</item>
+        <!--        指定最宽宽度，规避横屏情况下，BottomSheet 宽度显示异常的问题-->
+        <item name="android:maxWidth">480dp</item>
+        <!--        指定折叠状态高度，规避横屏情况下，折叠状态高度过低的问题-->
+        <item name="behavior_peekHeight">240dp</item>
+        <!--        指定 Expanded 状态下不清除圆角-->
+        <item name="shouldRemoveExpandedCorners">false</item>
+    </style>
+
+    <style name="BottomSheetDialogShapeAppearance">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopRight">16dp</item>
+        <item name="cornerSizeTopLeft">16dp</item>
+        <item name="cornerSizeBottomRight">0dp</item>
+        <item name="cornerSizeBottomLeft">0dp</item>
+    </style>
+</resources>

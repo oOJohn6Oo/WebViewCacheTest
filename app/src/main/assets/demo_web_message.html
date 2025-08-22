@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>WebMessagePort Demo</title>
+    <style>
+        body { font-family: sans-serif; padding: 0px; background: transparent; }
+        #log { margin-top: 24px; padding: 12px; border: 1px solid #ccc; }
+    </style>
+</head>
+<body>
+<h2>WebMessagePort Demo</h2>
+<div id="log">Waiting...</div>
+
+<script>
+    // For Native use
+    window.onNativePort = function(port) {
+      // callback when Native event comes
+      port.onmessage = function(event) {
+        document.getElementById('log').innerText = event.data;
+      };
+    };
+</script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>JSInterface Demo</title>
+    <style>
+        body { font-family: sans-serif; padding: 0px; background: transparent; }
+        #log { margin-top: 24px; padding: 12px; border: 1px solid #ccc; }
+    </style>
+</head>
+<body>
+<h2>JSInterface Demo</h2>
+<div id="log">Waiting...</div>
+
+<script>
+    function updateFromNative(message) {
+      document.getElementById('log').innerText = message;
+    }
+</script>
+</body>
+</html>
