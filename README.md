@@ -1,8 +1,28 @@
-# Demonstrate how to render WebView content instantly
+# A faster solution to render WebView content
+
+![no cache vs cached WebView render](https://i.imgur.com/ZEivLwz.png)
+
+## Suitable scene
+
+* Fetch LLM output through SSE API then use WebView to render it as a Markdown + Latex content at real time
+  * Use `evaluateJavascript` or `webMessagePort` to update the html content.
+
+    ``` kt
+    dataFlow.collect {
+        val content = "${printMsg.joinToString("\\n")}\\n======\\n\\nReceived:\\n$it"
+        if(!usingJS && Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+            webMessagePort?.postMessage(WebMessage(content))
+        }else{
+            webView.evaluateJavascript("updateFromNative('$content')", null)
+        }
+      }
+    ```
+* Multiple WebViews inside ViewPager2
+
 
 ## Key logic
 
-* Using host + path as Key, and WebView as Value in a map to store and reuse the WebView
+* Store and reuse WebViews in a map, keyed by host + path
   <details>
    <summary>WebViewCache.kt</summary>
    
@@ -109,9 +129,3 @@ Move to [juejin.cn](https://juejin.cn/post/7543556350745313306) to see the whole
  | No Cache first Time| 104ms | 230ms |
  | No Cache later Time| 3ms | 64ms |
  | Cached | 0ms | 2ms |
-
-
-
-## Result
-
-![no cache vs cached WebView render](https://i.imgur.com/ZEivLwz.png)
